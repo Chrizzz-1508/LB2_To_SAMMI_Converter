@@ -82,6 +82,12 @@ namespace LB2_To_SAMMI_Converter
             s = s.Replace("lioranboard.on(", "sammiclient.on(");
             s = s.Replace("lioranboardclient.addListener(", "sammiclient.addListener(");
             s = s.Replace("lioranboardclient.removeListener(", "sammiclient.removeListener(");
+            s = s.Replace("Lioranboard Startup", "SAMMI Startup");
+            s = s.Replace("Lioranboard Shutdown", "SAMMI Shutdown");
+            s = s.Replace("Lioranboard Reset", "SAMMI Reset");
+            s = s.Replace("Lioranboard Crash", "SAMMI Crash");
+            s = s.Replace("Lioranboard Deck Reload", "SAMMI Deck Reload");
+
             rtbSEF.Text = s;
 
             if(sender == null)
