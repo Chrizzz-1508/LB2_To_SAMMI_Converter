@@ -44,7 +44,6 @@ namespace LB2_To_SAMMI_Converter
         private void btnConvert_Click(object sender, EventArgs e)
         {
             string s = rtbLB2.Text;
-            s = s.Replace("LioranBoardJSON.", "SAMMIJSON.");
 
             Regex reg = new Regex("\"lioranboard_version\":\"(.{4,15})\"\\W");
             Match m = reg.Match(s);
@@ -53,8 +52,8 @@ namespace LB2_To_SAMMI_Converter
                 s = s.Replace(m.Groups[1].Value, "2022.4.0");
             }
 
+            s = s.Replace("LioranBoardJSON.", "SAMMIJSON.");
             s = s.Replace("\"lioranboard_version\":", "\"sammi_version\":");
-
             s = s.Replace("lioranboardclient.send(", "sammiclient.send(");
             s = s.Replace("LB.method(", "SAMMI.method(");
             s = s.Replace("LB.getVariable(", "SAMMI.getVariable(");
@@ -98,6 +97,7 @@ namespace LB2_To_SAMMI_Converter
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (rtbSEF.Text.Contains("LBVars.twitchList")) MessageBox.Show("The command \"LBVars.twitchList\" no longer exists in SAMMI, you can use \"SAMMI.getTwitchList()\" instead. Please adjust it manually.");
             if(String.IsNullOrEmpty(rtbSEF.Text) || String.IsNullOrEmpty(txtFileName.Text))
             {
                 MessageBox.Show("Not all fields were filled out correctly. Save process aborted!");
